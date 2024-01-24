@@ -133,7 +133,7 @@
                 break;                
             
             default:
-                # code...
+                echo '';
                 break;
         }
         ?>
