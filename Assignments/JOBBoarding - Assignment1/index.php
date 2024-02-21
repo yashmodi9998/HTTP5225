@@ -1,4 +1,8 @@
-<?php include('inc/nav.php'); ?>
+<?php
+define('PAGE_TITLE', 'Home');
+include('inc/nav.php'); 
+
+?>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -46,5 +50,4 @@
         </table>
     </div>
 </div>
-</body>
-</html>
+<?php include('inc/footer.php');

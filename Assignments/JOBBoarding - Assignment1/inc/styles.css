@@ -1,16 +1,27 @@
-body {
-    padding-top: 56px;
+.heading-text {
+    color: white;
+    font-size: larger;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-.navbar-custom {
-    background-color: #0b335b;
+.heading-text:hover {
+    color: #093A3E;
 }
 
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-nav .nav-link {
-    color: #ffffff;
+a.nav-link {
+    color: white;
 }
 
-.navbar-custom .navbar-toggler-icon {
-    background-color: #1a1313;
+a.nav-link:hover {
+    color: #093A3E;
+}
+
+footer {
+    background-color: #093A3E;
+    color: white;
+}
+
+.social-icons a {
+    color: white;
 }

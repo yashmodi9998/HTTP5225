@@ -1,6 +1,6 @@
-<?php include('inc/nav.php'); ?>
-
-<?php
+<?php 
+define('PAGE_TITLE', 'Applications');
+include('inc/nav.php'); 
 include('inc/connect.php');
 
 $job_id = $_GET['job_id'];
@@ -60,7 +60,7 @@ if (!$applications) {
 
 <?php
 }
+ include('inc/footer.php');
 ?>
 
-</body>
-</html>
+

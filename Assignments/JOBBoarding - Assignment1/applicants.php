@@ -1,9 +1,13 @@
-<?php include('inc/nav.php'); ?>
+<?php
+define('PAGE_TITLE', 'Applicants');
+include('inc/nav.php');
+
+?>
 <div class="container">
     <div class="row">
         <div class="col">
             <h1 class="display-5 mt-3 mb-5">
-                Applications
+                Applicants
             </h1>
         </div>
     </div>
@@ -24,7 +28,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?= $application['full_name'];?></h5>    
                         <p class="card-text"><?= $application['email'];?></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="#" class="btn btn-primary">View Profile</a>
                     </div>
                 </div>
             </div>
@@ -32,5 +36,4 @@
     </div>
 
 </div>
-</body>
-</html>
+<?php include('inc/footer.php');

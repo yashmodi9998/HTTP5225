@@ -1,6 +1,8 @@
-<?php include('inc/nav.php'); 
-    include('inc/connect.php');
-    
+<?php 
+define('PAGE_TITLE', 'Profile');
+include('inc/nav.php'); 
+include('inc/connect.php');
+
     $app_id = $_GET['app_id'];
     $applicatiant_query = 'SELECT * FROM applicants WHERE applicant_id='.$app_id;
     $applicatiant_result = mysqli_query($con, $applicatiant_query);
@@ -91,6 +93,4 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
+<?php include('inc/footer.php');
