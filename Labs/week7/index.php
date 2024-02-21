@@ -1,3 +1,29 @@
+<?php 
+ include('admin/inc/functions.php');
+ include('admin/inc/connect.php');
+
+ if(isset($_POST['login'])){
+   $query = 'SELECT *
+             FROM users
+             WHERE email = "' . $_POST['email'] . '"
+             AND password = "' . md5($_POST['password']) . '"
+             LIMIT 1';
+   $result = mysqli_query($connect, $query);
+   if(mysqli_num_rows($result)){
+     $record = mysqli_fetch_assoc($result);
+     $_SESSION['id'] = $record['id'];
+     set_message('User Logged in successfully!', 'bg-sucess');
+     header('Location: admin/index.php');
+     die();
+   }else{
+     set_message('Username/password not found!', 'bg-danger');
+     header('Location: index.php');
+     die();
+   }
+
+ }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,57 +36,29 @@
 </head>
 
 <body>
-    <?php include('inc/nav.php'); ?>
+    
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="display-5 mt-3 mb-5">
-                    Student Catalog
-                </h1>
+             <h1 class="display-5">Login</h1>
 
             </div>
         </div>
-        <?php
-        include('inc/connect.php');
-        $query = 'SELECT * 
-                    FROM students';
-        $students = mysqli_query($con, $query);
-
-
-        ?>
-
         <div class="row">
-            <?php foreach ($students as $student) {
-                if ($student['marks'] < 50) {
-                    $bgClass = 'bg-danger';
-                } else {
-                    $bgClass = 'bg-success';
-                }
-            ?>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="<?= $student['imageURL'] ?>" class="card-img-top" alt="...">
-                        <div class="card-body <?= ' ' . $bgClass ?>">
-                            <h5 class="card-title"><?= $student['fname'] . ' ' . $student['lname'] ?> </h5>
-                            <p class="card-text">Marks <?= $student['marks'] ?></p>
-                        </div>
-                        <div class="card-footer">
-                            <form action="inc/deletestudent.php" method="POST">
-                                <input type="hidden" name="id" value="<?= $student['id']; ?>">
-                                <button type="submit" name="deleteStudent" class="btn btn-sm btn-warning">Delete</button>
-                            </form>
-                            <form action="update.php" method="POST">
-                                <input type="hidden" name="id" value="<?= $student['id']; ?>">
-                                <button type="submit" name="updateStudent" class="btn btn-sm btn-warning">Update</button>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            <?php  } ?>
-
+      <div class="col-md-6">
+      <form method="POST" action="">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" name="email" class="form-control" id="email" aria-describedby="Email">
         </div>
-
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="password">
+        </div>
+        <button type="submit" name="login" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+    </div>
     </div>
 </body>
 

@@ -1,4 +1,5 @@
 <?php
+include("functions.php");
 // print_r($_POST);
 if (isset($_POST['id'])) {
  
@@ -9,6 +10,7 @@ if (isset($_POST['id'])) {
     $query = ("DELETE FROM students WHERE id=$id");
     $students = mysqli_query($con, $query);
     if ($students) {
+        set_message("User Deleted");
         header('Location:../index.php');
     } else {
         echo mysqli_error($con);

@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="grades.php">Grades</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../admin/users.php">Users</a>
+                </li>
 
             </ul>
         </div>
