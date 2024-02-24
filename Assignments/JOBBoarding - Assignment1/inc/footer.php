@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4">
                 <h5>Our Mission</h5>
-                <p>Our mission is to provide you with the absolute best online shopping experience and the best prices for nutritional supplements in Canada.</p>
+                <p>Our mission is to empower individuals by connecting them with meaningful employment opportunities. We are dedicated to fostering a dynamic job market where talents are recognized.</p>
             </div>
             <div class="col-md-4">
                 <h5>Follow Us</h5>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <hr class="my-4">
-        <p>&copy; 2024 PumpUp Nutritions | All rights reserved</p>
+        <p>&copy; 2024 YM AGENCY | All rights reserved</p>
     </div>
 </footer>
 

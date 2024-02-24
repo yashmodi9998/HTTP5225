@@ -20,15 +20,10 @@ $query = 'SELECT
 
 $applications = mysqli_query($con, $query);
 
-if (!$applications) {
-    // Display an error message if the query fails
-    echo '<div class="container mt-4">';
-    echo '<div class="alert alert-danger" role="alert">';
-    echo 'Error retrieving applicants. Please try again later.';
-    echo '</div>';
-    echo '</div>';
-} else {
-    // Flag to check if the heading has been displayed
+if (mysqli_num_rows($applications)>0) {
+ 
+    
+    // Flag to check if the heading has been displayed 
     $headingDisplayed = false;
 ?>
 
@@ -59,6 +54,14 @@ if (!$applications) {
     </div>
 
 <?php
+}
+else{
+    ?>
+    <div class="alert alert-info mt-3" role="alert">
+        Right now, There is no application for this Job .
+    </div>
+    <?php
+
 }
  include('inc/footer.php');
 ?>

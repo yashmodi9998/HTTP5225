@@ -38,7 +38,7 @@ include('inc/connect.php');
                 <div class="card-body">
                     <h5 class="card-title"><?= $applicant_details['full_name']; ?></h5>
                     <p class="card-text"><?= $applicant_details['email']; ?></p>
-                    <!-- Add other user details as needed -->
+
                 </div>
             </div>
         </div>
@@ -73,7 +73,6 @@ include('inc/connect.php');
                                         $statusColorClass = 'text-success';
                                         break;
                                 default:
-                                    // Default color
                                     break;
                             }
 
@@ -82,12 +81,8 @@ include('inc/connect.php');
                         </p>
                         
                         <hr>
-                    <?php } ?>
-                    <?php if (!empty($applicant_details['resume_URL'])) { ?>
-                        <p class="card-text">
-                            <a href="<?= $applicant_details['resume_URL']; ?>" target="_blank">View Resume</a>
-                        </p>
-                    <?php } ?>
+                    <?php }
+                    ?>
                 </div>
             </div>
         </div>
