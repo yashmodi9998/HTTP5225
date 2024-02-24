@@ -20,7 +20,7 @@ include('inc/nav.php');
     $jobs = mysqli_query($con, $query);
     ?>
     <div class="row">
-        <table class="table">
+        <table class="table table-responsive table-bordered">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -43,7 +43,7 @@ include('inc/nav.php');
                         <td><?php echo $job['description']; ?></td>
                         <td><?php echo $job['company']; ?></td>
                         <td><?php echo $job['location']; ?></td>
-                        <td><?php echo $job['salary']; ?></td>
+                        <td><?php echo $job['salary'].' CAD'; ?></td>
                         <td><?php echo date('Y-m-d', strtotime($job['posted_at'])); ?></td>
                     </tr>
                     <?php

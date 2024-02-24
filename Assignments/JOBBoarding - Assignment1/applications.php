@@ -44,7 +44,7 @@ if (mysqli_num_rows($applications)>0) {
                             <h5 class="card-title"><?= $application['full_name']; ?></h5>
                             <p class="card-text mb-2 small text-muted">Applied on <?= date($application['application_date']); ?></p>
                             <p class="card-text"><?= $application['email']; ?></p>
-                            <a href="profile.php?app_id=<?= $application['applicant_id']; ?>" class="btn btn-primary">Visit Profile</a>
+                            <a href="profile.php?app_id=<?= $application['applicant_id']; ?>" class="btn btn-outline-primary">Visit Profile</a>
                         </div>
                     </div>
                 </div>

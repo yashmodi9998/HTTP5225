@@ -1,14 +1,14 @@
 <?php
-define('PAGE_TITLE', 'Home');
+define('PAGE_TITLE', 'Apply');
 include('inc/nav.php'); 
 
 ?>
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="display-5 mt-3 mb-5">
-                Register Candidate
-            </h1>
+            <h2 class="display-5 mt-3 mb-5">
+                Apply For Job
+            </h2>
         </div>
     </div>
     <?php
@@ -63,7 +63,7 @@ include('inc/nav.php');
         </select>
     </div>   
     <div class="mb-3">
-    <button type="submit" name="addapplication" class="btn btn-primary">Submit</button>
+    <button type="submit" name="addapplication" class="btn btn-outline-primary">Submit</button>
     </div>
     </form>
     </div>
