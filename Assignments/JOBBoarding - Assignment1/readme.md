@@ -18,12 +18,6 @@ The project consists of three main tables:
 2. **Applicants:** Contains details of the applicants.
 3. **Applications:** Manages job applications.
 
-## Getting Started
-
-1. Clone the repository: `git clone https://github.com/yashmodi9998/http5225/Assignments/JobBoarding.git`
-2. Import the database using the provided SQL file.
-3. Configure the database connection in the `config.php` file.
-
 ## Usage
 
 - Access the website by navigating to the project root.
@@ -34,7 +28,7 @@ The project consists of three main tables:
 
 - **Backend:** Core PHP
 - **Database:** MySQL
-- **Frontend:** HTML, CSS, JavaScript
+- **Frontend:** HTML, CSS, JavaScript, BootStrap
 
 ## Contributing
 
