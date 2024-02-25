@@ -1,41 +1,42 @@
-YMAgency - Job Agency Website
-Overview
-YMAgency is a dynamic Job Agency website developed in core PHP. It empowers applicants to create detailed profiles, apply for jobs seamlessly, and enables administrators to efficiently manage job postings.
+# YMAgency Job Agency Website
 
-Features
-User Registration and Profiles:
+## Overview
 
-Applicants can easily register on the platform, providing essential information to create comprehensive profiles.
-Job Posting:
+YMAgency is a Job Agency website developed using core PHP. It facilitates the process of job applications, allowing applicants to create profiles, and apply for jobs, and enables the admin to post job listings.
 
-Admins can effortlessly post job opportunities, including title, description, company details, location, and salary.
-Job Applications:
+## Features
 
-Applicants have the flexibility to explore posted jobs and submit applications for positions suiting their preferences.
-Application Management:
+- **Job Listings:** Admin can post job openings.
+- **Applicant Profiles:** Users can create applicant profiles.
+- **Application Submissions:** Applicants can apply for jobs.
+  
+## Project Structure
 
-The admin dashboard facilitates effective management of job applications, allowing for a streamlined review of applicant details and status updates.
-Technologies Used
-Backend: Core PHP
-Database: MySQL
-Frontend: HTML, CSS, JavaScript
-Setup Instructions
-Database Setup:
+The project consists of three main tables:
 
-Import the provided SQL file (ymagency.sql) to set up the necessary tables and initial data.
-Configuration:
+1. **Jobs:** Stores information about job listings.
+2. **Applicants:** Contains details of the applicants.
+3. **Applications:** Manages job applications.
 
-Update the database connection details in inc/connect.php to align with your environment.
-Running the Application:
+## Getting Started
 
-Deploy the project on a PHP-supported server.
-Access the application through the browser.
-Additional Notes
-This project is primarily designed for educational purposes and may require additional enhancements for production use.
-Exercise caution to safeguard sensitive information, including database credentials.
-Contribution Guidelines
-Fork the repository.
-Create a new branch for your feature (git checkout -b feature/your-feature).
-Commit your changes (git commit -m 'Add some feature').
-Push to the branch (git push origin feature/your-feature).
-Create a new Pull Request.
+1. Clone the repository: `git clone https://github.com/yashmodi9998/http5225/Assignments/JobBoarding.git`
+2. Import the database using the provided SQL file.
+3. Configure the database connection in the `config.php` file.
+
+## Usage
+
+- Access the website by navigating to the project root.
+- Applicants can create profiles, view job listings, and submit applications.
+- Admins can log in to manage job listings and applicant data.
+
+## Technologies Used
+
+- **Backend:** Core PHP
+- **Database:** MySQL
+- **Frontend:** HTML, CSS, JavaScript
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
