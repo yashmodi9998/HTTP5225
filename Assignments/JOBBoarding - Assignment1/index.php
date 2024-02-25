@@ -15,9 +15,12 @@ include('inc/nav.php');
         </div>
     </div>
     <?php
-    include('inc/connect.php');
-    $query = 'SELECT * FROM jobs';
-    $jobs = mysqli_query($con, $query);
+   // Including the database connection file
+   include('inc/connect.php');
+    
+   // Query to fetch all jobs
+   $query = 'SELECT * FROM `jobs`';
+   $jobs = mysqli_query($con, $query);
     ?>
     <div class="row">
         <table class="table table-responsive table-bordered">
@@ -34,7 +37,9 @@ include('inc/nav.php');
             </thead>
             <tbody>
                 <?php
-                $counter = 1; // Initialize the counter
+
+                $counter = 1; 
+                 // Looping through each job and displaying its detail
                 foreach ($jobs as $job) {
                 ?>
                     <tr>
@@ -53,11 +58,10 @@ include('inc/nav.php');
         </table>
     </div>
     <div class="mb-4">
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Add New Jobs
-</button>
-</div>
-<!-- Modal -->
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Add New Job
+      </button>
+    </div>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -67,38 +71,37 @@ include('inc/nav.php');
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-    <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input type="text" name="title" class="form-control" id="title">
-    </div>   
-    <div class="mb-3">
-    <label for="description" class="form-label">Job Description</label>
-    <input type="text" name="description"  class="form-control" id="description" >
-    </div>
-    <div class="mb-3">
-    <label for="company" class="form-label">Company</label>
-    <input type="text" name="company"  class="form-control" id="company" >
-    </div>
-    <div class="mb-3">
-    <label for="location" class="form-label">Location</label>
-    <input type="text" name="location"  class="form-control" id="location" >
-    </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="title">
+        </div>   
+        <div class="mb-3">
+          <label for="description" class="form-label">Job Description</label>
+          <input type="text" name="description"  class="form-control" id="description" >
+        </div>
+        <div class="mb-3">
+          <label for="company" class="form-label">Company</label>
+          <input type="text" name="company"  class="form-control" id="company" >
+        </div>
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input type="text" name="location"  class="form-control" id="location" >
+        </div>
 
-  <div class="mb-3">
-    <label for="salary" class="form-label">Salary</label>
-    <input type="number" name="salary"  class="form-control" id="salary" >
-  </div>
-  <div class="mb-3">
-    <label for="posted_at" class="form-label">Date</label>
-    <input type="date" name="posted_at"  class="form-control" id="posted_at" >
-  </div>
-
-</div>
-      <div class="modal-footer">
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input type="number" name="salary"  class="form-control" id="salary" >
+        </div>
+        <div class="mb-3">
+          <label for="posted_at" class="form-label">Date</label>
+          <input type="date" name="posted_at"  class="form-control" id="posted_at" >
+        </div>
+      </div>
+    <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" name="addJobs" class="btn btn-outline-primary">Submit</button>
-      </div>
-      </form>
+    </div>
+  </form>
     </div>
   </div>
 </div>

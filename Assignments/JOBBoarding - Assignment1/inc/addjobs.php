@@ -11,8 +11,6 @@ if (isset($_POST['addJobs'])) {
     $image_URL = 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/'.$randomNumber.'.jpg';
 
     include('connect.php');
-
-
     $query = 'INSERT 
                 INTO `jobs` (`title`,`description`,`company`,`location`,`salary`,`posted_at`) 
                 VALUES (

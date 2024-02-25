@@ -1,7 +1,6 @@
 <?php
 define('PAGE_TITLE', 'Apply');
 include('inc/nav.php'); 
-
 ?>
 <div class="container">
     <div class="row">
@@ -13,16 +12,22 @@ include('inc/nav.php');
     </div>
     <?php
     include('inc/connect.php');
-    $query = 'SELECT * FROM applicants';
+      // Query to fetch all applicants
+    $query = 'SELECT * FROM `applicants`';
     $result_applicant = mysqli_query($con, $query);
-    $query = 'SELECT * FROM jobs';
+    // Query to fetch all jobs
+    $query = 'SELECT * FROM `jobs`';
     $result_jobs = mysqli_query($con, $query);
+    
+    // Array to store applicants and jobs
     $applicants=[];
     $jobs=[];
+    //get applicants id and name in array
     while ($applicant = mysqli_fetch_array($result_applicant)) {
    $applicants[$applicant['applicant_id']]= $applicant['full_name'];
 
     }
+    //get jobs id and title in array
     while ($job = mysqli_fetch_array($result_jobs)) {
         $jobs[$job['job_id']]= $job['title'];  
     
@@ -32,9 +37,10 @@ include('inc/nav.php');
     <form method="Post" action="inc/addapplication.php">
     <div class="mb-3">
         <label for="applicants" class="form-label">Applicant</label>
-        <select class="form-select" name= "applicants" id = "applicants" aria-label="Default select example">
-        <option selected>Select Applicant</option>
+        <select class="form-select" name= "applicants" id = "applicants" required>
+        <option selected value="">Select Applicant</option>
             <?php
+             // Displaying options for each applicant
             foreach ($applicants as $id => $name) {
                 echo '<option value="'.$id.'">'.$name.'</option>';
             }
@@ -43,9 +49,10 @@ include('inc/nav.php');
     </div>  
     <div class="mb-3">
         <label for="jobs" class="form-label">Jobs</label>
-        <select class="form-select" name= "jobs" id = "jobs" >
-        <option selected>Select Applicant</option>
+        <select class="form-select" name= "jobs" id = "jobs" required>
+        <option selected value="">Select Applicant</option>
             <?php
+             // Displaying options for each jobs
             foreach ($jobs as $id => $name) {
                 echo '<option value="'.$id.'">'.$name.'</option>';
             }
@@ -54,8 +61,8 @@ include('inc/nav.php');
     </div> 
     <div class="mb-3">
         <label for="status" class="form-label">Status</label>
-        <select class="form-select" name= "status" id = "status" >
-        <option selected>Select Status</option>
+        <select class="form-select" name= "status" id = "status" required >
+        <option selected value="">Select Status</option>
            <option value="applied">Applied</option> 
            <option value="in-review">In Review</option> 
            <option value="accepted">Accepted</option> 

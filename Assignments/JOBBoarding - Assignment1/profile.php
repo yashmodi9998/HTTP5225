@@ -2,12 +2,14 @@
 define('PAGE_TITLE', 'Profile');
 include('inc/nav.php'); 
 include('inc/connect.php');
-
+// Get the applicant_id from the URL parameter
     $app_id = $_GET['app_id'];
+    // Query to fetch details of the applicant
     $applicatiant_query = 'SELECT * FROM applicants WHERE applicant_id='.$app_id;
     $applicatiant_result = mysqli_query($con, $applicatiant_query);
 
     if ($applicatiant_result) {
+          // Query to fetch job application details for the applicant
         $query = 'SELECT 
                     A.applicant_id,
                     AP.application_id,
@@ -19,9 +21,9 @@ include('inc/connect.php');
                     J.company AS job_company,
                     J.location AS job_location,
                     J.salary AS job_salary
-                FROM Applicants A
-                LEFT JOIN Applications AP ON A.applicant_id = AP.applicant_id
-                LEFT JOIN Jobs J ON AP.job_id = J.job_id
+                FROM `applicants` A
+                LEFT JOIN `applications` AP ON A.applicant_id = AP.applicant_id
+                LEFT JOIN `jobs` J ON AP.job_id = J.job_id
                 WHERE A.applicant_id = '.$app_id;
 
         $applications = mysqli_query($con, $query);
@@ -75,8 +77,8 @@ include('inc/connect.php');
                                 default:
                                     break;
                             }
-
-                            echo '<span class="' . $statusColorClass . '">' . ucfirst($status) . '</span>';
+                        // Display the status with the determined color
+                            echo '<span class="' . $statusColorClass . '">' . $status . '</span>';
                             ?>
                         </p>
                         

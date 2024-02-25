@@ -13,13 +13,18 @@ include('inc/nav.php');
     </div>
 
     <?php
+     // Including the database connection file
     include('inc/connect.php');
-    $query = 'SELECT * FROM applicants';
+    // Query to fetch all applicants
+    $query = 'SELECT * FROM `applicants`';
     $applications = mysqli_query($con, $query);
     ?>
 
     <div class="row">
-        <?php foreach ($applications as $application) {?>
+    
+        <?php  
+        // Looping through each applicants and displaying its detail
+        foreach ($applications as $application) {?>
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <a href="profile.php?app_id=<?= $application['applicant_id'];?>">

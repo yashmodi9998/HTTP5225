@@ -2,8 +2,9 @@
 define('PAGE_TITLE', 'Applications');
 include('inc/nav.php'); 
 include('inc/connect.php');
-
+// Retrieving the job_id from the URL parameter
 $job_id = $_GET['job_id'];
+// Query to fetch details of applicants for a specific job
 $query = 'SELECT 
             A.applicant_id,
             A.full_name,
@@ -13,16 +14,14 @@ $query = 'SELECT
             AP.application_date,
             AP.status AS application_status,
             J.title
-        FROM Applications AP
-        JOIN jobs J ON AP.job_id = j.job_id
-        JOIN Applicants A ON AP.applicant_id = A.applicant_id
+        FROM `applications` AP
+        JOIN `jobs` J ON AP.job_id = j.job_id
+        JOIN `applicants` A ON AP.applicant_id = A.applicant_id
         WHERE AP.job_id = ' . $job_id;
 
 $applications = mysqli_query($con, $query);
-
+// Checking if there are any applications
 if (mysqli_num_rows($applications)>0) {
- 
-    
     // Flag to check if the heading has been displayed 
     $headingDisplayed = false;
 ?>
@@ -31,6 +30,7 @@ if (mysqli_num_rows($applications)>0) {
         <div class="row">
 
             <?php foreach ($applications as $application) {
+                 // Displaying the heading for applicants if not displayed . Display it only one time
                 if (!$headingDisplayed) {
                     echo '<h3 class="display-5 mb-4">Applicants for the ' . $application['title'] . '</h3>';
                     $headingDisplayed = true;
@@ -56,6 +56,7 @@ if (mysqli_num_rows($applications)>0) {
 <?php
 }
 else{
+    // Displaying a message if there are no applications for the job
     ?>
     <div class="alert alert-info mt-3" role="alert">
         Right now, There is no application for this Job .

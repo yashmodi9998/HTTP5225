@@ -37,8 +37,6 @@
     </div>
 </footer>
 
-<!-- Bootstrap JS Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b0fcd5a2a4b3787e4d169eeb6c3db4e3fc815be2c8d3d4f585cf94e5e4f7b1b6" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -5,7 +5,6 @@ $applicant_id = $_POST['applicants'];
 $status = $_POST['status'];
 include('connect.php');
 
-
     $query = 'INSERT 
                 INTO `applications` (`job_id`,`applicant_id`,`status`) 
                 VALUES (
