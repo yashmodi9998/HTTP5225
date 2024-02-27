@@ -31,7 +31,7 @@ include('inc/nav.php');
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <a href="profile.php?app_id=<?= $application['applicant_id'];?>">
-                        <img src="<?= $application['image_URL'];?>" class="card-img-top" alt="...">
+                        <img src="<?= $application['image_URL'];?>" class="card-img-top" alt="Image">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><?= $application['full_name'];?></h5>    
@@ -56,15 +56,15 @@ include('inc/nav.php');
       <div class="modal-body">
     <div class="mb-3">
         <label for="fullname" class="form-label">Full Name</label>
-        <input type="text" name="fullname" class="form-control" id="fullname">
+        <input type="text" name="fullname" class="form-control" id="fullname" required>
     </div>   
     <div class="mb-3">
     <label for="email" class="form-label">Email</label>
-    <input type="email" name="email"  class="form-control" id="email" >
+    <input type="email" name="email"  class="form-control" id="email" required>
     </div>
   <div class="mb-3">
     <label for="resume" class="form-label">Resume</label>
-    <input type="file" name="resume" accept=".pdf, .doc, .docx" class="form-control" id="resume" >
+    <input type="file" name="resume" accept=".pdf, .doc, .docx" class="form-control" id="resume" required>
   </div>
 
 </div>
