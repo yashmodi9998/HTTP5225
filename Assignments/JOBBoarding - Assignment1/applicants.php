@@ -13,7 +13,6 @@ include('inc/nav.php');
     </div>
 
     <?php
-     // Including the database connection file
     include('inc/connect.php');
     // Query to fetch all applicants
     $query = 'SELECT * FROM `applicants`';
@@ -21,7 +20,11 @@ include('inc/nav.php');
     ?>
 
     <div class="row">
-    
+    <div class="mb-4">
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Add New Applicant
+</button>
+</div>
         <?php  
         // Looping through each applicants and displaying its detail
         foreach ($applications as $application) {?>
@@ -33,23 +36,19 @@ include('inc/nav.php');
                     <div class="card-body">
                         <h5 class="card-title"><?= $application['full_name'];?></h5>    
                         <p class="card-text"><?= $application['email'];?></p>
-                        <a href="#" class="btn btn-outline-primary">View Profile</a>
+                        <a href="profile.php?app_id=<?= $application['applicant_id'];?>" class="btn btn-outline-primary">View Profile</a>
                     </div>
                 </div>
             </div>
         <?php } ?>
     </div>
     <div>
-        <div class="mb-4">
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Add New User
-</button>
-</div>
+
 </div>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-    <form method="Post" action="inc/addapplicant.php">
+    <form method="Post" action="inc/addapplicant.php" enctype="multipart/form-data">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Applicant</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -65,7 +64,7 @@ include('inc/nav.php');
     </div>
   <div class="mb-3">
     <label for="resume" class="form-label">Resume</label>
-    <input type="text" name="resume"  class="form-control" id="resume" >
+    <input type="file" name="resume" accept=".pdf, .doc, .docx" class="form-control" id="resume" >
   </div>
 
 </div>

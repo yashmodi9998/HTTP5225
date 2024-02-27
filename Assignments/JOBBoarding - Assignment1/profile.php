@@ -7,9 +7,9 @@ include('inc/connect.php');
     // Query to fetch details of the applicant
     $applicatiant_query = 'SELECT * FROM applicants WHERE applicant_id='.$app_id;
     $applicatiant_result = mysqli_query($con, $applicatiant_query);
-
+//check if there is an applicant
     if ($applicatiant_result) {
-          // Query to fetch job application details for the applicant
+          // Query to get job application details for the specific applicant
         $query = 'SELECT 
                     A.applicant_id,
                     AP.application_id,
@@ -22,31 +22,41 @@ include('inc/connect.php');
                     J.location AS job_location,
                     J.salary AS job_salary
                 FROM `applicants` A
-                LEFT JOIN `applications` AP ON A.applicant_id = AP.applicant_id
-                LEFT JOIN `jobs` J ON AP.job_id = J.job_id
+                JOIN `applications` AP ON A.applicant_id = AP.applicant_id
+                JOIN `jobs` J ON AP.job_id = J.job_id
                 WHERE A.applicant_id = '.$app_id;
 
         $applications = mysqli_query($con, $query);
+        // To get applicant details
         $applicant_details = mysqli_fetch_assoc($applicatiant_result);
     }
 ?>
 
 <div class="container mt-4">
     <div class="row">
-        <!-- User Details Section -->
+     
         <div class="col-md-4 mb-4">
             <div class="card">
                 <img src="<?= $applicant_details['image_URL']; ?>" class="card-img-top" alt="Profile Picture">
                 <div class="card-body">
                     <h5 class="card-title"><?= $applicant_details['full_name']; ?></h5>
                     <p class="card-text"><?= $applicant_details['email']; ?></p>
-
+                    <p class="card-text">
+                        <?php if($applicant_details['resume_link']){?>
+                    <a href="<?= $applicant_details['resume_link']; ?>" target="_blank" download>
+                        Download Resume
+                  </a>
+<?php }?>
+                </p>
                 </div>
             </div>
         </div>
 
-        <!-- Job Application Details Section -->
         <div class="col-md-8">
+        <?php
+        //check if there is an application for a candidate 
+        if(mysqli_num_rows($applications) > 0 ){ 
+?>
             <div class="card">
                 <div class="card-header">
                     Job Application Details
@@ -77,7 +87,7 @@ include('inc/connect.php');
                                 default:
                                     break;
                             }
-                        // Display the status with the determined color
+                        // Display the status of application with color
                             echo '<span class="' . $statusColorClass . '">' . $status . '</span>';
                             ?>
                         </p>
@@ -87,7 +97,14 @@ include('inc/connect.php');
                     ?>
                 </div>
             </div>
+            <?php }else{
+                //if there is no application from the candidate
+            ?><div class="alert alert-info mt-3" role="alert">
+        Right now, Candidate has not applied for any Jobs.
+    </div><?php
+        }?>
         </div>
+        
     </div>
 </div>
 <?php include('inc/footer.php');

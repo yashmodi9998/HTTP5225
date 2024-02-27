@@ -29,7 +29,7 @@
                         <a class="nav-link" href="applicants.php">Applicants</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="register.php">Apply</a>
+                        <a class="nav-link" href="register.php">Apply For JOB</a>
                     </li>
                 </ul>
             </div>
