@@ -7,8 +7,8 @@ YMAgency is a Job Agency website developed using core PHP. It facilitates the pr
 ## Features
 
 - **Job Listings:** Admin can post job openings.
-- **Applicant Profiles:** Users can create applicant profiles.
-- **Application Submissions:** Applicants can apply for jobs.
+- **Applicant Profiles:** Users can create applicant profiles. Users can upload resumes with the profile creation.
+- **Application Submissions:** Applicants can apply for jobs. Admin can download resume files from the profile.
   
 ## Project Structure
 
@@ -30,7 +30,5 @@ The project consists of three main tables:
 - **Database:** MySQL
 - **Frontend:** HTML, CSS, JavaScript, BootStrap
 
-## Contributing
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
 
