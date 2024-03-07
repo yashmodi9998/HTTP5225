@@ -1,109 +1,127 @@
 <?php
-define('PAGE_TITLE', 'Home');
-include('inc/nav.php'); 
+include("./admin/inc/connect.php");
+include("./admin/inc/config.php");
+include("./admin/inc/functions.php");
 
+$query = 'SELECT *
+                FROM applicants
+                WHERE email = "'.$_POST['email'].'"
+                AND password = "'.md5( $_POST['password'] ).'"';
+$result = mysqli_query( $con, $query );
+
+if( mysqli_num_rows( $result ) )
+{
+
+$record = mysqli_fetch_assoc( $result );
+
+$_SESSION['email'] = $record['email'];
+header( 'Location: applicant/index.php' );
+die();
+
+}
+elseif($_POST['email'] == "admin@gmail.com" && $_POST['password']=="password")
+{
+    $_SESSION['email'] = $_POST['email'];
+
+header( 'Location: admin/index.php' );
+die();
+
+} 
 ?>
-<div class="full-width-banner d-flex" style="background-image:url('inc/images/banner.jpg');background-size: cover; height:600px;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login/Signup Form with Tabs</title>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./admin/inc/styles.css">
    
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1 class="display-5 mt-3 mb-5">
-                Available Jobs
-            </h1>
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg " style="background-color:#093A3E;">
+        <div class="container-fluid ">
+            <a class="navbar-brand heading-text" href="index.php">YM AGENCY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          
         </div>
-    </div>
-    <?php
-   // Including the database connection file
-   include('inc/connect.php');
-    
-   // Query to fetch all jobs
-   $query = 'SELECT * FROM `jobs`';
-   $jobs = mysqli_query($con, $query);
-    ?>
-    <div class="row">
-        <table class="table table-responsive table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Salary</th>
-                    <th scope="col">Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+    </nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+          
+            <ul class="nav nav-tabs mb-3" id="authTabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="signup-tab" data-bs-toggle="tab" href="#signup">Signup</a>
+                </li>
+            </ul>
 
-                $counter = 1; 
-                 // Looping through each job and displaying its detail
-                foreach ($jobs as $job) {
-                ?>
-                    <tr>
-                        <td scope="row"><?php echo $counter; ?></td>
-                        <td><a href="applications.php?job_id=<?= $job['job_id']; ?>"><?php echo $job['title']; ?></a></td>
-                        <td><?php echo $job['description']; ?></td>
-                        <td><?php echo $job['company']; ?></td>
-                        <td><?php echo $job['location']; ?></td>
-                        <td><?php echo $job['salary'].' CAD'; ?></td>
-                        <td><?php echo date('Y-m-d', strtotime($job['posted_at'])); ?></td>
-                    </tr>
-                    <?php
-                    $counter++; 
-                } ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="mb-4">
-      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Add New Job
-      </button>
-    </div>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <form method="Post" action="inc/addJobs.php">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Job</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="title" class="form-control" id="title">
-        </div>   
-        <div class="mb-3">
-          <label for="description" class="form-label">Job Description</label>
-          <input type="text" name="description"  class="form-control" id="description" >
-        </div>
-        <div class="mb-3">
-          <label for="company" class="form-label">Company</label>
-          <input type="text" name="company"  class="form-control" id="company" >
-        </div>
-        <div class="mb-3">
-          <label for="location" class="form-label">Location</label>
-          <input type="text" name="location"  class="form-control" id="location" >
-        </div>
+          
+            <div class="tab-content">
+               
+                <div class="tab-pane fade show active" id="login">
+                    <div class="card">
+                        <div class="card-header">
+                            Login
+                        </div>
+                        <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" name = "email">
+                               
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
 
-        <div class="mb-3">
-          <label for="salary" class="form-label">Salary</label>
-          <input type="number" name="salary"  class="form-control" id="salary" >
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+
+             
+                <div class="tab-pane fade" id="signup">
+                    <div class="card">
+                        <div class="card-header">
+                            Signup
+                        </div>
+                        <div class="card-body">
+                        <form action="./admin/inc/addapplicant.php" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="fullname" class="form-label">Full Name</label>
+                                <input type="text" name="fullname" class="form-control" id="fullname" required>
+                            </div>   
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email"  class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="resume" class="form-label">Resume</label>
+                                <input type="file" name="resume" accept=".pdf, .doc, .docx" class="form-control" id="resume" required>
+                            </div>
+                            <button type="submit" name="addApplicant"class="btn btn-outline-primary">Submit</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-          <label for="posted_at" class="form-label">Date</label>
-          <input type="date" name="posted_at"  class="form-control" id="posted_at" >
-        </div>
-      </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" name="addJobs" class="btn btn-outline-primary">Submit</button>
     </div>
-  </form>
-    </div>
-  </div>
 </div>
-</div>
-<?php include('inc/footer.php');
+
+</body>
+</html>
