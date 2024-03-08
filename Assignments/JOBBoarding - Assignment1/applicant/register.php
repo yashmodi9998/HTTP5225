@@ -1,6 +1,6 @@
 <?php
 define('PAGE_TITLE', 'Apply');
-include('../admin/inc/nav.php'); 
+include('inc/nav.php'); 
 include('../admin/inc/connect.php');
 include('../admin/inc/functions.php');
 include("../admin/inc/config.php");

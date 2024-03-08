@@ -2,18 +2,17 @@
 include("./admin/inc/connect.php");
 include("./admin/inc/config.php");
 include("./admin/inc/functions.php");
-
+if($_POST){
 $query = 'SELECT *
                 FROM applicants
                 WHERE email = "'.$_POST['email'].'"
                 AND password = "'.md5( $_POST['password'] ).'"';
 $result = mysqli_query( $con, $query );
-
 if( mysqli_num_rows( $result ) )
 {
 
 $record = mysqli_fetch_assoc( $result );
-
+$_SESSION['id'] = $record['applicant_id'];
 $_SESSION['email'] = $record['email'];
 header( 'Location: applicant/index.php' );
 die();
@@ -26,6 +25,7 @@ elseif($_POST['email'] == "admin@gmail.com" && $_POST['password']=="password")
 header( 'Location: admin/index.php' );
 die();
 
+}
 } 
 ?>
 <!DOCTYPE html>
@@ -113,7 +113,7 @@ die();
                                 <label for="resume" class="form-label">Resume</label>
                                 <input type="file" name="resume" accept=".pdf, .doc, .docx" class="form-control" id="resume" required>
                             </div>
-                            <button type="submit" name="addApplicant"class="btn btn-outline-primary">Submit</button>
+                            <button type="submit" name="addApplicant" class="btn btn-outline-primary">Submit</button>
                         </form>
                         </div>
                     </div>

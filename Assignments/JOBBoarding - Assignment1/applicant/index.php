@@ -1,6 +1,6 @@
 <?php
 define('PAGE_TITLE', 'Home');
-include('../admin/inc/nav.php'); 
+include('inc/nav.php'); 
 include('../admin/inc/connect.php');
 include('../admin/inc/functions.php');
 include("../admin/inc/config.php");
@@ -9,6 +9,11 @@ secure();
 $query = 'SELECT * FROM `jobs`';
 $jobs = mysqli_query($con, $query);
 
+$query_user = 'SELECT * 
+               FROM applicants 
+               WHERE applicant_id='.$_SESSION['id'];
+$user = mysqli_query($con, $query_user);
+$row= mysqli_fetch_assoc($user);
 
 ?>
 <div class="full-width-banner d-flex" style="background-image:url('../admin/inc/images/banner.jpg');background-size: cover; height:600px;">
@@ -17,9 +22,10 @@ $jobs = mysqli_query($con, $query);
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="display-5 mt-3 mb-5">
-                Available Jobs
-            </h1>
+            <h2 class="display-5 mt-3 mb-5">
+                Hello, <?=$row['full_name']; ?>
+            </h2>
+            <h3>Available jobs</h3>
         </div>
     </div>
 
@@ -34,6 +40,7 @@ $jobs = mysqli_query($con, $query);
                     <th scope="col">Location</th>
                     <th scope="col">Salary</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Apply </th>
                 </tr>
             </thead>
             <tbody>
@@ -45,12 +52,13 @@ $jobs = mysqli_query($con, $query);
                 ?>
                     <tr>
                         <td scope="row"><?php echo $counter; ?></td>
-                        <td><a href="applications.php?job_id=<?= $job['job_id']; ?>"><?php echo $job['title']; ?></a></td>
+                        <td><?php echo $job['title']; ?></td>
                         <td><?php echo $job['description']; ?></td>
                         <td><?php echo $job['company']; ?></td>
                         <td><?php echo $job['location']; ?></td>
                         <td><?php echo $job['salary'].' CAD'; ?></td>
                         <td><?php echo date('Y-m-d', strtotime($job['posted_at'])); ?></td>
+                        <td><a href="register.php?job_id=<?= $job['job_id']; ?>">APPLY NOW</a></td>
                     </tr>
                     <?php
                     $counter++; 
@@ -58,53 +66,5 @@ $jobs = mysqli_query($con, $query);
             </tbody>
         </table>
     </div>
-    <div class="mb-4">
-      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Add New Job
-      </button>
-    </div>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <form method="Post" action="..admin/inc/addJobs.php">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Job</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="title" class="form-control" id="title">
-        </div>   
-        <div class="mb-3">
-          <label for="description" class="form-label">Job Description</label>
-          <input type="text" name="description"  class="form-control" id="description" >
-        </div>
-        <div class="mb-3">
-          <label for="company" class="form-label">Company</label>
-          <input type="text" name="company"  class="form-control" id="company" >
-        </div>
-        <div class="mb-3">
-          <label for="location" class="form-label">Location</label>
-          <input type="text" name="location"  class="form-control" id="location" >
-        </div>
-
-        <div class="mb-3">
-          <label for="salary" class="form-label">Salary</label>
-          <input type="number" name="salary"  class="form-control" id="salary" >
-        </div>
-        <div class="mb-3">
-          <label for="posted_at" class="form-label">Date</label>
-          <input type="date" name="posted_at"  class="form-control" id="posted_at" >
-        </div>
-      </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" name="addJobs" class="btn btn-outline-primary">Submit</button>
-    </div>
-  </form>
-    </div>
-  </div>
-</div>
 </div>
 <?php include('../admin/inc/footer.php');

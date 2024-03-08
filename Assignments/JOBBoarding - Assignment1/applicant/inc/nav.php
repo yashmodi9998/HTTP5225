@@ -24,11 +24,9 @@
                         <a class="nav-link" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="applicants.php">Applicants</a>
+                        <a class="nav-link" href="profile.php">Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.php">Apply For JOB</a>
-                    </li>
+                 
                     <li class="nav-item">
                         <a class="nav-link" href="./inc/logout.php">logout</a>
                     </li>

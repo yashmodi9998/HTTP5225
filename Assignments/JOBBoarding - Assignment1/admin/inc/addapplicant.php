@@ -22,7 +22,7 @@ if (isset($_POST['addApplicant'])) {
     //var that holds directory location.
     
     $uploadDirectory = __DIR__ . "/uploads/";
-    echo $uploadDirectory;
+  
     $resumePath = $uploadDirectory . $resumeName;
     //check if there is an error in file
     if ($resumeError === 0) {
@@ -43,8 +43,11 @@ if (isset($_POST['addApplicant'])) {
             $applicant = mysqli_query($con, $query);
 
             if ($applicant) {
+                $insertedId = mysqli_insert_id($con);
+
                 $_SESSION['email'] = $email;
-                header('Location: ../../applicant/');
+                $_SESSION['id'] = $insertedId;
+                 header('Location: ../../applicant/');
             } else {
                 echo mysqli_error($con);
             }
@@ -57,4 +60,4 @@ if (isset($_POST['addApplicant'])) {
 } else {
     echo "No data received.";
 }
-?>
+

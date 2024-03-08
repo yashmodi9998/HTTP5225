@@ -1,14 +1,15 @@
 <?php 
 define('PAGE_TITLE', 'Profile');
-include('../admin/inc/nav.php'); 
+include('inc/nav.php');
 include('../admin/inc/connect.php');
 include('../admin/inc/functions.php');
 include("../admin/inc/config.php");
 secure(); 
-// Get the applicant_id from the URL parameter
-    $app_id = $_GET['app_id'];
+
     // Query to fetch details of the applicant
-    $applicatiant_query = 'SELECT * FROM applicants WHERE applicant_id='.$app_id;
+    $applicatiant_query = 'SELECT * 
+                            FROM applicants 
+                            WHERE applicant_id='.$_SESSION['id'];
     $applicatiant_result = mysqli_query($con, $applicatiant_query);
 //check if there is an applicant
     if ($applicatiant_result) {
@@ -27,7 +28,7 @@ secure();
                 FROM `applicants` A
                 JOIN `applications` AP ON A.applicant_id = AP.applicant_id
                 JOIN `jobs` J ON AP.job_id = J.job_id
-                WHERE A.applicant_id = '.$app_id;
+                WHERE A.applicant_id = '.$_SESSION['id'];
 
         $applications = mysqli_query($con, $query);
         // To get applicant details
