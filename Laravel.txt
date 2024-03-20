@@ -1,0 +1,54 @@
+Laravel
+
+1.create-project
+composer create-project laravel/laravel:^11.0 example-app
+php artisan serve
+2. to refresh migration:
+php artisan migrate:refresh
+
+3.To create migration file
+php artisan make:migration create_course_table
+	 responsible for creating and modifying database tables
+this migration file use to table course (model file)
+    public function up(): void
+    {
+        Schema::create('course', function (Blueprint $table) {
+            $table->id();
+            $table->string('courseID');
+            $table->string('name');
+            $table->timestamps();
+        });
+    }
+
+4.To create factory (Model)
+	used to generate fake data for testing and seeding the database.
+	
+php artisan make:factory Course
+
+5.to create model
+	represent the data and business logic of the application.
+php artisan make:model Course
+  protected $fillable=['courseID','name'];
+  
+6.routes --> to create route
+
+To create a container for file (yield )
+		<div class="container">
+			@yield('content')
+		</div>
+
+To use that container write code inside section
+		@extends('layouts.admin')  -->locaation of file having yield
+		@section('content')  --> to use that section
+		<div class="container">
+			<div class="row">
+				<div class="col"><h2 class="display2">
+					Home page
+				</h2></div>
+			</div>
+		</div>
+		@endsection
+		
+7.to create controller -->php artisan make:controller HomeController
+
+to create controller with methods-->php artisan make:controller HomeController--resource 
