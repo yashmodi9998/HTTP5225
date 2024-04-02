@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('fname');
             $table->string('lname');
-            $table->string('grade')->nullable();
-            $table->string('image')->nullable();
+            $table->string('email');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

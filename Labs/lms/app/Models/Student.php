@@ -10,9 +10,9 @@ class Student extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = [
+    protected $fillable=[
         'fname',
         'lname',
-        'email'
-        ] ;
+        'email',
+    ];
 }
